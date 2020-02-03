@@ -12,6 +12,7 @@ black = "*"
 django = "==3.0.2"
 pillow = "*"
 django-countries = "*"
+pylint-django = "*"
 
 [requires]
 python_version = "3.8"

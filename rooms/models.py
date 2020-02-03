@@ -1,14 +1,12 @@
 from django.db import models
 from django_countries.fields import CountryField
 from core import models as core_models
-from users import models as user_models
 
 
 class AbstractItem(core_models.TimeStampModel):
     """Abstract Item"""
 
     name = models.CharField(max_length=80)
-    sub_title = models.CharField(max_length=200)
 
     class Meta:
         abstract = True
@@ -22,7 +20,6 @@ class RoomType(AbstractItem):
 
     class Meta:
         verbose_name = "Room Type"
-        ordering = ["name"]
 
 
 class Amenity(AbstractItem):
@@ -87,3 +84,9 @@ class Room(core_models.TimeStampModel):
     def __str__(self):
         return self.name
 
+    def total_rating(self):
+        all_reviews = self.reviews.all()
+        all_ratings = 0
+        for review in all_reviews:
+            all_ratings += review.rating_average()
+            return all_ratings / len(all_reviews)
