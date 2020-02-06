@@ -6,11 +6,12 @@ from . import models
 class ConversationsAdmin(admin.ModelAdmin):
     """Conversations Admin Definitions"""
 
-    list_display = ("__str__", "created")
+    list_display = ("__str__", "count_messages", "count_participants")
 
 
 @admin.register(models.Message)
 class MessageAdmin(admin.ModelAdmin):
     """Messages Admin Definitions"""
 
-    list_display = ("__str__", "count_messages", "count_participants")
+    list_display = ("__str__", "created")
+
