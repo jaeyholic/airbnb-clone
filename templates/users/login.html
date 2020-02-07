@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block page_name %}
+  Login
+{% endblock page_name %}
+
+{% block content %}
+<p>Login</p>
+
+<form method="post" action="{% url 'users:login' %}">
+  {% csrf_token %}
+  {{form.as_p}}
+  <button>Login</button>
+</form>
+
+
+{% for room in rooms %}
+<p>{{room.name}}</p>
+{% endfor %}
+{% endblock content %}
