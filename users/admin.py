@@ -37,5 +37,7 @@ class CustomUserAdmin(admin.ModelAdmin):
         "superhost",
         "is_staff",
         "is_superuser",
+        "email_verify",
+        "email_secret",
     )
 
