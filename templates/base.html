@@ -18,7 +18,7 @@
   <body class="text-gray-800 text-sm sm:text-base">
     
     {% if request.path == '/' %}
-      <header class="container max-w-full">
+      <header class="container max-w-full relative">
         <div class="flex items-center justify-between px-6 h-20">
           <div class="flex items-center">
             <a class="mr-6" href="{% url 'core:home' %}">
@@ -26,6 +26,11 @@
             </a>
           </div>
           <div>{% include "partials/nav.html" %}</div>
+        </div>
+
+        <div class="absolute bottom-0 right-0 text-white font-medium text-right mr-10 mb-6 text-sm">
+          <p>Over 300 unique places<br />
+          to stay in Oregon</p>
         </div>
       
         <div class="container px-4 sm:px-20 mt-16">
@@ -53,7 +58,13 @@
             <a class="mr-6" href="{% url 'core:home' %}">
               <img class="w-10" src="{% static 'img/logo.svg' %}" alt="">
             </a>
-          </div>
+
+            <form class="mt-3" method="get" action="{% url 'rooms:search' %}">
+              <input
+                class="rounded-sm border border-gray-400 focus:outline-none shadow px-2 py-3 focus:border-green-600 w-85 transition ease-linear duration-500 text-gray-700"
+                name="city" type="text" placeholder="Anywhere" />
+            </form>
+            </div>
           <div>{% include "partials/nav.html" %}</div>
         </div>
       </div>

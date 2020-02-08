@@ -5,8 +5,12 @@ from . import models
 class LoginForm(forms.Form):
     """LoginView Definition"""
 
-    username = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    username = forms.CharField(
+        label="username", widget=forms.TextInput(attrs={"placeholder": "Username"})
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={"placeholder": "Password"})
+    )
 
     def clean(self):
         username = self.cleaned_data.get("username")
@@ -32,10 +36,19 @@ class RegisterForm(forms.ModelForm):
             "username",
             "email",
         ]
+        widgets = {
+            "first_name": forms.TextInput(attrs={"placeholder": "First Name"}),
+            "last_name": forms.TextInput(attrs={"placeholder": "Last Name"}),
+            "username": forms.TextInput(attrs={"placeholder": "Username"}),
+            "email": forms.EmailInput(attrs={"placeholder": "Email"}),
+        }
 
-    password = forms.CharField(widget=forms.PasswordInput)
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={"placeholder": "Password"})
+    )
     confirm_password = forms.CharField(
-        widget=forms.PasswordInput, label="Confirm Password"
+        widget=forms.PasswordInput(attrs={"placeholder": "Confirm Password"}),
+        label="Confirm Password",
     )
 
     def clean_confirm_password(self):

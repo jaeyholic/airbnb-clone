@@ -5,9 +5,9 @@
       {% if room.host.superhost %}
       <p class="text-gray-800 uppercase text-xx sm:text-xs p-px mr-1 font-medium border border-gray-800 rounded">superhost</p>
       {% endif %}
-       <p class="text-gray-600 truncate text-sm sm:text-base">{{room.city}}, {{room.country.name}}</p>
+       <p class="text-gray-600 text-sm sm:text-base truncate">{{room.country.name}}</p>
       </div>
-    <div class="text-sm">
+    <div class="text-xs">
       <i class="fas fa-star text-red-500"></i>
       <span>{{room.total_rating}}</span>
     </div>

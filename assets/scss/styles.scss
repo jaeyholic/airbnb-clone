@@ -43,7 +43,26 @@ header {
 
 .header {
   background: url('../../static/img/bg.jpg');
-  height: 20vh;
+  height: 14vh;
   background-size: cover;
   background-position: center center;
+}
+
+input {
+  @apply w-full p-2 border border-gray-400 rounded-sm;
+
+  &:focus {
+    @apply outline-none border-teal-500;
+  }
+}
+
+form {
+  .input {
+    @apply mb-3;
+    &.has_error {
+      input {
+        @apply border-red-700;
+      }
+    }
+  }
 }

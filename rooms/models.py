@@ -102,5 +102,5 @@ class Room(core_models.TimeStampModel):
         return 0
 
     def first_photo(self):
-        (photo,) = self.photos.all()[:1]
+        (photo,) = self.photos.all()[3:4]
         return photo.file.url

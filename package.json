@@ -9,6 +9,7 @@
     "css": "gulp"
   },
   "devDependencies": {
+    "@tailwindcss/custom-forms": "^0.2.1",
     "autoprefixer": "^9.7.4",
     "gulp": "^4.0.2",
     "gulp-csso": "^4.0.1",
