@@ -5,7 +5,8 @@ Register
 {% endblock page_name %}
 
 {% block content %}
-<p>Register</p>
+  
+  {% include 'partials/social_login.html' %}
 
 <form method="post" action="{% url 'users:register' %}">
   {% csrf_token %}

@@ -19,6 +19,7 @@ class CustomUserAdmin(admin.ModelAdmin):
                     "currency",
                     "bio",
                     "superhost",
+                    "login_method",
                 )
             },
         ),
@@ -39,5 +40,6 @@ class CustomUserAdmin(admin.ModelAdmin):
         "is_superuser",
         "email_verify",
         "email_secret",
+        "login_method",
     )
 
