@@ -105,5 +105,3 @@ class RoomAdmin(admin.ModelAdmin):
 
     count_photos.short_description = "Photo Count"
 
-    count_photos.short_description = "Photo Count"
-

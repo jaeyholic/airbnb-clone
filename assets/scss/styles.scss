@@ -1,0 +1,49 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+@font-face {
+  font-family: CircularStd;
+  src: url('../../static/fonts/CircularStd-Light.otf');
+  font-weight: thin;
+}
+
+@font-face {
+  font-family: CircularStdBook;
+  src: url('../../static/fonts/CircularStd-Book.otf');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: CircularStdMedium;
+  src: url('../../static/fonts/CircularStd-Medium.otf');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: CircularStdBold;
+  src: url('../../static/fonts/CircularStd-Bold.otf');
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: CircularStdBlack;
+  src: url('../../static/fonts/CircularStd-Black.otf');
+  font-weight: 800;
+}
+
+header {
+  background: url('../../static/img/bg.jpg');
+  height: 100vh;
+  background-size: cover;
+  background-position: center center;
+}
+
+.header {
+  background: url('../../static/img/bg.jpg');
+  height: 20vh;
+  background-size: cover;
+  background-position: center center;
+}

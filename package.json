@@ -1,0 +1,22 @@
+{
+  "name": "airbnb-clone",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/jaeyholic/airbnb-clone.git",
+  "author": "Felix Nana Yaw Yeboah-Jefferson <gabsco208309@hotmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "css": "gulp"
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.7.4",
+    "gulp": "^4.0.2",
+    "gulp-csso": "^4.0.1",
+    "gulp-postcss": "^8.0.0",
+    "gulp-sass": "^4.0.2",
+    "node-sass": "^4.13.1"
+  },
+  "dependencies": {
+    "tailwindcss": "^1.2.0"
+  }
+}
