@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block page_name %}
+Update Profile
+{% endblock page_name %}
+
+{% block content %}
+
+<div class="container max-w-full px-4 sm:px-0 mt-40">
+  <div class="flex flex-col justify-center items-center">
+    <div class="w-120 border bg-white border-gray-300 p-6 rounded-sm">
+
+      <form class="my-4" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+        <span class="text-red-700 font-medium text-sm">
+          {{error}}
+        </span>
+        {% endfor %}
+        {% endif %}
+
+
+        {% for field in form %}
+        {% include "partials/form_input.html" with field=field %}
+        {% endfor %}
+
+        <div class="flex items-center">
+          <button class="bg-teal-700 text-white w-20 text-center rounded p-3 font-medium mt-4 focus:outline-none">Save</button>
+          
+          <div class="ml-4 mt-4">
+            <a class="text-teal-700 font-medium" href="{{user.get_absolute_url}}">Cancel</a>
+          </div>
+        </div>
+      </form>
+
+     
+     {% if object.login_method == 'email' %}
+      <a class="text-blue-700 font-body text-center" href="{% url 'users:password' %}">Change Password</a>
+     {% endif %}
+       
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

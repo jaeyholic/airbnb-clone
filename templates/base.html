@@ -25,7 +25,7 @@
               <img class="w-10" src="{% static 'img/logo.svg' %}" alt="">
             </a>
           </div>
-          <div>{% include "partials/nav.html" %}</div>
+          <div class="text-gray-200">{% include "partials/nav.html" %}</div>
         </div>
 
         <div class="absolute bottom-0 right-0 text-white font-medium text-right mr-10 mb-6 text-sm">
@@ -52,20 +52,20 @@
       </header>
 
       {% else %}
-      <div class="header container max-w-full">
+      <div class="container max-w-full fixed z-50 top-0 bg-white border-b border-gray-500">
         <div class="flex items-center justify-between px-6 h-20">
           <div class="flex items-center">
             <a class="mr-6" href="{% url 'core:home' %}">
-              <img class="w-10" src="{% static 'img/logo.svg' %}" alt="">
+              <img class="w-10" src="{% static 'img/airbnb.svg' %}" alt="">
             </a>
 
-            <form class="mt-3" method="get" action="{% url 'rooms:search' %}">
+            <form class="mt-2" method="get" action="{% url 'rooms:search' %}">
               <input
                 class="rounded-sm border border-gray-400 focus:outline-none shadow px-2 py-3 focus:border-green-600 w-85 transition ease-linear duration-500 text-gray-700"
                 name="city" type="text" placeholder="Anywhere" />
             </form>
             </div>
-          <div>{% include "partials/nav.html" %}</div>
+          <div class="text-gray-700">{% include "partials/nav.html" %}</div>
         </div>
       </div>
     {% endif %}
@@ -73,6 +73,8 @@
     
 
     {% block content %} {% endblock content %} 
+
+    {% include "partials/messages.html" %}
     {% include "partials/footer.html" %}
   </body>
 </html>

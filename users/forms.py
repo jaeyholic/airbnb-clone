@@ -66,3 +66,40 @@ class RegisterForm(forms.ModelForm):
         user.set_password(password)
         user.save()
 
+
+class UpdateProfileForm(forms.ModelForm):
+    """UpdateProfileForm Definition"""
+
+    class Meta:
+        model = models.User
+        fields = [
+            "first_name",
+            "last_name",
+            "username",
+            "email",
+            "gender",
+            "birthdate",
+            "language",
+            "currency",
+            "bio",
+        ]
+
+        widgets = {
+            "first_name": forms.TextInput(attrs={"placeholder": "First Name"}),
+            "last_name": forms.TextInput(attrs={"placeholder": "Last Name"}),
+            "username": forms.TextInput(attrs={"placeholder": "Username"}),
+            "email": forms.EmailInput(attrs={"placeholder": "Email"}),
+            "bio": forms.Textarea(attrs={"placeholder": "Bio"}),
+            "birthdate": forms.DateInput(attrs={"placeholder": "Date of Birth"},),
+        }
+
+
+class UpdateProfilePhotoForm(forms.ModelForm):
+    """UpdateProfilePhotoForm Definition"""
+
+    class Meta:
+        model = models.User
+        fields = [
+            "avatar",
+        ]
+

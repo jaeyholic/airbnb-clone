@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block page_name %}
+  {{user_obj.first_name}}'s Profile
+{% endblock page_name %}
+
+{% block content %}
+  <div class="h-75vh mt-40">
+    <div class="container mx-auto px-20">
+      <div class="flex border-b border-gray-400 pb-10">
+        <div class="w-2/6">
+          <div class="w-80 border border-gray-500 rounded-sm bg-white p-6 text-center">
+            <div>
+              {% include "mixins/user_avatar.html" with user=user_obj %}
+            </div>
+            <a class="text-blue-500" href="{% url 'users:photo' %}">Update Photo</a>
+            <div class="border-t border-gray-400 my-6"></div>
+            <h5 class="text-lg">{{user_obj.first_name}} provided</h5>
+    
+          </div>
+        </div>
+        <div class="w-3/6 pl-10">
+          <div class="border-b border-gray-400 pb-6">
+            <div class="flex">
+              <h3 class="text-5xl text-gray-700">Hi, I'm {{user_obj.first_name}}</h3>
+              <div class="mt-4">
+                {% if user_obj.superhost %}
+                <i class="fas fa-check-circle text-2xl ml-3 text-green-600"></i>
+                {% endif %}
+              </div>
+            </div>
+            <div class="flex">
+              <p class="mr-10">Joined in {{user_obj.date_joined|date:"Y"}}</p>
+    
+              {% if user == user_obj %}
+              <a class="text-blue-500" href="{% url 'users:update' %}">Edit Profile</a>
+              {% endif %}
+    
+            </div>
+          </div>
+          <div class="mt-6">
+            <p>{{user.bio}}</p>
+          </div>
+        </div>
+      </div>
+      <div>
+      </div>
+    
+    
+      <div>
+        {% if user_obj.rooms.all %}
+        <div class="mt-10">
+          <h3 class="text-3xl">{{user_obj.first_name}}'s rooms</h3>
+        </div>
+    
+        <div class="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-4">
+          {% for room in user_obj.rooms.all %}
+          {% include "partials/room_card.html" with room=room %}
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+    
+    </div>
+  </div>
+{% endblock content %}

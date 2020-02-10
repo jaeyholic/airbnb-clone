@@ -4,6 +4,10 @@
 
 @tailwind utilities;
 
+::selection {
+  @apply bg-teal-700 text-white;
+}
+
 @font-face {
   font-family: CircularStd;
   src: url('../../static/fonts/CircularStd-Light.otf');
@@ -48,12 +52,26 @@ header {
   background-position: center center;
 }
 
-input {
-  @apply w-full p-2 border border-gray-400 rounded-sm;
+input,
+textarea,
+select {
+  @apply w-full p-3 border border-gray-400 rounded-sm;
 
   &:focus {
     @apply outline-none border-teal-500;
   }
+}
+
+// input[type='file'] {
+//   @apply hidden;
+// }
+
+select {
+  @apply h-10 rounded-sm;
+}
+
+textarea {
+  @apply h-40;
 }
 
 form {
@@ -64,5 +82,49 @@ form {
         @apply border-red-700;
       }
     }
+  }
+}
+
+.photo input[type='checkout'] {
+  display: none;
+}
+
+// .photo label {
+//   display: none;
+// }
+
+@keyframes messageFadeIn {
+  0% {
+    opacity: 1;
+    transform: translateY(-50px);
+  }
+  5% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  95% {
+    opacity: 1;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+}
+
+.message {
+  animation: messageFadeIn 5s ease-in-out forwards;
+  @apply text-white;
+  &.error {
+    @apply bg-red-600;
+  }
+  &.info {
+    @apply bg-blue-600;
+  }
+  &.success {
+    @apply bg-green-600;
+  }
+  &.warning {
+    @apply bg-yellow-600;
   }
 }

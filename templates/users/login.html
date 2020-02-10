@@ -17,7 +17,7 @@
           <div class="h-px w-full bg-gray-400"></div>
         </div>
         
-        <form class="my-4" method="post" action="{% url 'users:login' %}">
+        <form class="my-4" method="post">
           {% csrf_token %}
           
           {% if form.non_field_errors %}
@@ -40,7 +40,7 @@
             </label>
           </div>
 
-          <button class="bg-red-600 text-white w-full text-center rounded p-3 font-medium mt-4">Login</button>
+          <button class="bg-red-600 text-white w-full text-center rounded p-3 font-medium mt-4 focus:outline-none">Login</button>
         </form>
 
         <div class="border-t border-gray-200 mt-10 pt-5">Don’t have an account? <a class="text-blue-700 font-body" href="{% url 'users:register' %}">Sign up</a>

@@ -18,7 +18,9 @@ module.exports = {
         '127': '47.9rem',
         '130': '55rem',
         '132': '60rem',
-        '135': '70rem'
+        '135': '70rem',
+        '50vh': '50vh',
+        '75vh': '75vh'
       },
       fontFamily: {
         header: ['CircularStdBlack'],

@@ -1,0 +1,10 @@
+{% if user.avatar %}
+<img class="rounded-full w-32 h-32 mx-auto object-cover mb-4" src="{{user.avatar.url}}" />
+
+{% else %}
+<div>
+  <p
+    class="rounded-full w-32 h-32 mx-auto object-cover mb-4 bg-gray-800 text-gray-200 text flex justify-center items-center text-5xl">
+    {{user.first_name|first}}</p>
+</div>
+{% endif %}

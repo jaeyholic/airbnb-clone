@@ -1,8 +1,23 @@
 {% load static %}
 
-<ul class="flex items-center text-sm font-medium text-gray-200">
+<ul class="flex items-center text-sm font-medium">
   {% if user.is_authenticated %}
-    <li class="mr-8"><a href="{% url 'users:logout' %}">Logout</a></li>
+    <li class="mr-8 mt-4">
+      <a href="{{user.get_absolute_url}}">
+        {% if user_obj.avatar %}
+        <img class="rounded-full w-8 h-8 mx-auto object-cover mb-4 overflow-hidden" src="{{object.avatar.url}}" />
+      </a>
+        {% else %}
+        <div>
+          <a href="{{user.get_absolute_url}}"
+            class="rounded-full w-8 h-8 mx-auto object-cover mb-4 bg-gray-800 text-gray-200 text flex justify-center items-center text-xl overflow-hidden">
+            {{user.first_name|first}}</a>
+        </div>
+        {% endif %}
+    </li>
+    <li class="mr-8">
+      <a href="{% url 'users:logout' %}">Logout</a>
+    </li>
     {% else %}
     <li class="mr-8"><a href="{% url 'users:login' %}">Login</a></li>
     <li class="mr-8"><a href="{% url 'users:register' %}">Register</a></li>

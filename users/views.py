@@ -1,21 +1,22 @@
 import os
 import requests
 from django.views import View
-from django.views.generic import FormView
+from django.contrib.auth.views import PasswordChangeView
+from django.views.generic import FormView, DetailView, UpdateView
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import authenticate, login, logout
 from django.core.files.base import ContentFile
-from . import forms
-from . import models
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
+from . import models, forms, mixins
 
 # Create your views here.
-class LoginView(FormView):
+class LoginView(mixins.LoggedInUsers, FormView):
     """LoginView Definition"""
 
     template_name = "users/login.html"
     form_class = forms.LoginForm
-    success_url = reverse_lazy("core:home")
 
     def form_valid(self, form):
         username = form.cleaned_data.get("username")
@@ -25,13 +26,20 @@ class LoginView(FormView):
             login(self.request, user)
         return super().form_valid(form)
 
+    def get_success_url(self):
+        next_arg = self.request.GET.get("next")
+        if next_arg is not None:
+            return next_arg
+        else:
+            return reverse("core:home")
+
 
 def logout_view(request):
     logout(request)
     return redirect(reverse("core:home"))
 
 
-class RegisterView(FormView):
+class RegisterView(mixins.LoggedInUsers, FormView):
     """RegisterView Definition"""
 
     template_name = "users/register.html"
@@ -128,12 +136,50 @@ def github_callback(request):
                                 ContentFile(avatar_request.content()),
                             )
                     login(request, user)
-                    # messages.success(request, f"Welcome back {user.first_name}")
+                    messages.success(request, f"Welcome back {user.first_name}")
                     return redirect(reverse("core:home"))
                 else:
                     raise GitHubException("Can't get your profile")
         else:
             raise GitHubException("Can't get code")
     except GitHubException:
-        # messages.error(request, e)
+        messages.error(request)
         return redirect(reverse("users:login"))
+
+
+class UserProfileView(mixins.Authorization, DetailView):
+    model = models.User
+    context_object_name = "user_obj"
+
+
+class UpdateView(mixins.Authorization, SuccessMessageMixin, UpdateView):
+    template_name = "users/update-profile.html"
+    form_class = forms.UpdateProfileForm
+    success_message = "Profile successfully updated"
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+
+class UpdatePassword(
+    mixins.Authorization, mixins.EmailOnly, SuccessMessageMixin, PasswordChangeView
+):
+    template_name = "users/update-password.html"
+    success_message = "Password successfully updated"
+
+    def get_form(self, form_class=None):
+        """Return an instance of the form to be used in this view."""
+        form = super().get_form(form_class=form_class)
+        form.fields["old_password"].widget.attrs = {"placeholder": "Current Password"}
+        form.fields["new_password1"].widget.attrs = {"placeholder": "New Password"}
+        form.fields["new_password2"].widget.attrs = {"placeholder": "Confirm Password"}
+        return form
+
+    def get_success_url(self):
+        return self.request.user.get_absolute_url()
+
+
+class UpdateProfilePhoto(UpdateView):
+
+    template_name = "users/edit-photo.html"
+    form_class = forms.UpdateProfilePhotoForm
