@@ -70,6 +70,12 @@ select {
   @apply h-10 rounded-sm;
 }
 
+select#id_facilities,
+select#id_amenities,
+select#id_house_rules {
+  @apply h-64;
+}
+
 textarea {
   @apply h-40;
 }
@@ -114,7 +120,7 @@ form {
 
 .message {
   animation: messageFadeIn 5s ease-in-out forwards;
-  @apply text-white;
+  @apply text-white z-50 mt-10;
   &.error {
     @apply bg-red-600;
   }

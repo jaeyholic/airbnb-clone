@@ -5,11 +5,11 @@
 {% endblock page_name %}
 
 {% block content %}
-  <div class="h-75vh mt-40">
-    <div class="container mx-auto px-20">
-      <div class="flex border-b border-gray-400 pb-10">
-        <div class="w-2/6">
-          <div class="w-80 border border-gray-500 rounded-sm bg-white p-6 text-center">
+  <div class="mt-40">
+    <div class="container mx-auto px-4 sm:px-20">
+      <div class="flex flex-wrap border-b border-gray-400 pb-10">
+        <div class="w-full sm:w-2/6">
+          <div class="w-full sm:w-80 border border-gray-500 rounded-sm bg-white p-6 text-center">
             <div>
               {% include "mixins/user_avatar.html" with user=user_obj %}
             </div>
@@ -19,7 +19,7 @@
     
           </div>
         </div>
-        <div class="w-3/6 pl-10">
+        <div class="w-full sm:w-3/6 sm:pl-10 mt-10 sm:mt-0">
           <div class="border-b border-gray-400 pb-6">
             <div class="flex">
               <h3 class="text-5xl text-gray-700">Hi, I'm {{user_obj.first_name}}</h3>

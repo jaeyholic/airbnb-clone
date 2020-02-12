@@ -1,35 +1,154 @@
-{% extends "base.html" %} {% block page_name %}
+{% extends "base.html" %} 
+{% load static %}
+{% block page_name %}
 {{room.name}} {% endblock page_name %} {% block content %}
-<div>
-  <h2>{{room.name}}</h2>
-  <p>{{room.decription}}</p>
-</div>
 
-<div>
-  <h2>
-    By: <a href="{{room.host.get_absolute_url}}">{{room.host.username}}</a> {% if room.host.superhost %}
-    {{superhost}} {% else %} {% endif %}
-  </h2>
+  <div class="container sm:px-20 max-w-full mt-32">
+    <div class="px-4 sm:px-0 leading-none sm:leading-normal mb-4 sm:mb-0">
+      <h3 class="font-body text-gray-700 text-2xl sm:text-4xl">{{room.name}}</h3>
+    </div>
+    <div class="flex items-center mb-6 px-4 sm:px-0">
+      <div class="text-xs flex items-center">
+        <i class="fas fa-star text-red-500"></i>
+        <span class="ml-1">{{room.total_rating}}</span>
+      </div>
+      {% if room.host.superhost %}
+      <span class="mx-2 text-gray-600 text-xx">&bull;</span>
+      <p class="text-gray-800  text-xs sm:text-sm p-px mr-1 flex items-center">
+        <i class="fas fa-bolt text-red-500"></i>
+        <span class="ml-1">Superhost</span>
+      </p>
+      {% endif %}
+      <span class="mx-2 text-gray-600 text-xx">&bull;</span>
+      <p class="underline cursor-pointer text-sm sm:text-base">{{room.address}}</p>
+    </div>
 
-  <h4>Amenities</h4>
-  <ul>
-    {% for amenity in room.amenities.all %}
-    <li>{{amenity}}</li>
-    {% endfor %}
-  </ul>
+    <div class="flex flex-wrap">
+      <div class="w-full sm:w-1/2">
+        <img class="sm:h-110" src="{{room.first_photo}}" alt="">
+      </div>
+      
+      <div class="w-full sm:w-1/2">
+        <div class="flex flex-wrap">
+        {% for photo in room.get_other_images %}
+            <div class="w-1/2 overflow-hidden">
+              <img class="overflow-hidden object-cover h-60 w-full" src="{{photo.file.url}}" alt="">
+            </div>
+        {% endfor %}
+        </div>
+      </div>
+    </div>
 
-  <h4>Facilities</h4>
-  <ul>
-    {% for facility in room.facilities.all %}
-    <li>{{facility}}</li>
-    {% endfor %}
-  </ul>
+    <div class="flex flex-wrap sm:items-center px-4 sm:px-0">
+      {% include "mixins/available_room.html" with room=room %}
+    </div>
 
-  <h4>Amenities</h4>
-  <ul>
-    {% for rules in room.house_rules.all %}
-    <li>{{rules}}</li>
-    {% endfor %}
-  </ul>
-</div>
+    <div class="mt-12 sm:mt-8 border-b border-gray-400 pb-8 w-full sm:w-120">
+      {% include "mixins/room_icons.html" with room=room %}
+    </div>
+
+    <div class="w-120 border-b border-gray-400 py-8 px-4 sm:px-0">
+      <p>Welcome to {{room.host|title}} Valley</p>
+      <p>{{room.description}}</p>
+      <p class="font-medium mt-6">Any questions for the host?</p>
+      <button class="rounded bg-white py-2 px-4 font-medium border border-gray-700 mt-6">Contact host</button>
+    </div>
+
+    
+    {% if room.amenities.all %}
+      <div class="py-8 border-b border-gray-400 w-full sm:w-120 px-4 sm:px-0">
+        <h6 class="font-medium text-xl mb-4">Amenities</h6>
+        <ul>
+          {% for amenity in room.amenities.all  %}
+          <li class="">{{amenity}}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+      
+    
+    {% if room.facilities.all %}
+      <div class="py-8 border-b border-gray-400 px-4 sm:px-0">
+        <h6 class="font-medium text-xl mb-4">Facilities</h6>
+        <ul>
+          {% for facility in room.facilities.all  %}
+          <li class="">{{facility}}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+      
+    <div class="pt-8 border-b border-gray-400 px-4 sm:px-0">
+      <div class="font-medium text-2xl mb-4">
+        <i class="fas fa-star text-red-500"></i>
+        {{room.total_rating}} ({{room.reviews.count}} review{{room.reviews.count|pluralize}})
+      </div>
+
+      <div class="flex flex-wrap">
+          {% for review in room.reviews.all  %}
+            <div class="w-full sm:w-1/2 mb-6">
+             <div class="w-full sm:w-120">
+               <div class="flex">
+                {% if review.user.avatar %}
+                <img class="rounded-full w-10 h-10 object-cover" src="{{review.user.avatar.url}}" />
+                
+                {% else %}
+                <div>
+                  <p
+                    class="rounded-full w-10 h-10 bg-gray-800 text-gray-200 flex justify-center items-center text-2xl">
+                    {{review.user|make_list|first}}</p>
+                </div>
+                {% endif %}
+                 <div class="ml-4">
+                  <h6 class="font-medium">{{review.user|title}}</h6>
+                  <p class="text-sm text-gray-600">{{review.created|date:"M Y"}}</p>
+                 </div>
+               </div>
+              <p class="py-4">
+                {{review.review}}
+              </p>
+             </div>
+            </div>
+          {% endfor %}
+      </div>
+    </div>
+
+      {% if room.house_rules.all %}
+      <div class="border-b border-gray-400 pt-8 pb-10 px-4 sm:px-0">
+        <h6 class="text-2xl font-body mb-4">Things to know</h6>
+        
+        <div class="flex flex-wrap">
+          <div class="w-full sm:w-1/2 mb-8 sm:mb-0">
+            <h6 class="font-body text-lg mb-4">House Rules</h6>
+            <ul>
+              {% for rules in room.house_rules.all  %}
+              <li class="">{{rules}}</li>
+              {% endfor %}
+            </ul>
+          </div>
+
+          <div class="w-full sm:w-1/2">
+            <div class="w-115">
+              <h6 class="font-body text-lg mb-4">Cancellation policy</h6>
+              <p>Free cancellation for 48 hours</p>
+              <p>After that, cancel up to 7 days before check-in and get a 50% refund, minus the service fee.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-10 flex items-center">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="presentation" aria-hidden="true" focusable="false"
+            style="height: 16px; width: 16px; display: block; fill: currentcolor;">
+            <path
+              d="M22.39 5.798c-.088-.208-1.252-2.89-1.759-4.018a228.077 228.077 0 0 0-.677-1.49.5.5 0 0 0-.838-.11 7.236 7.236 0 0 1-.407.435 10.66 10.66 0 0 1-1.134.985C16.404 2.479 15.187 3 14 3c-1.21 0-1.995-.133-3.309-.483l-.4-.107C9.194 2.121 8.47 2 7.5 2a6.35 6.35 0 0 0-1.186.12c-.87.165-1.786.49-2.715.928-.48.225-.932.467-1.345.708l-.112.068-.171-.49a.5.5 0 1 0-.944.331l7 20a.5.5 0 0 0 .944-.33l-2.986-8.531a21.773 21.773 0 0 1 1.77-.843c.73-.307 1.44-.556 2.102-.724.61-.155 1.163-.237 1.642-.237.869 0 1.515.108 2.536.377l.398.106c1.39.371 2.255.517 3.566.517 2.853 0 5.29-1.786 5.974-3.842a.5.5 0 0 0 0-.316c-.324-.974-.87-2.355-1.584-4.044z">
+            </path>
+          </svg>
+          <p class="font-body underline ml-4">Report this listing</p>
+        </div>
+      </div>
+      {% endif %}
+    
+
+  </div>
+
 {% endblock content %}

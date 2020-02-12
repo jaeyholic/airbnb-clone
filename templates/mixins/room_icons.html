@@ -1,0 +1,61 @@
+<div class="flex px-4 sm:px-0 mb-6">
+  <div class="mr-4">
+    <svg viewBox="0 0 1000 1000" role="presentation" aria-hidden="true" focusable="false"
+      style="height: 20px; width: 20px; display: block; fill: currentcolor;">
+      <path
+        d="M928 417L680 606l95 306c3 12-6 24-16 24-3 0-5-1-8-4L500 741 251 931c-8 5-18 3-23-4-4-5-4-7-3-12l1-1 94-306L72 417c-8-7-10-11-6-23 3-8 9-12 14-12h309l96-307c2-6 8-11 14-11 7 0 13 5 16 13l96 305h309c6 0 12 4 14 12 4 12 3 16-6 23m44-35c-8-24-29-40-52-40H640L553 65c-7-24-29-41-54-41-24 0-45 16-52 39l-87 279H80c-23 0-44 16-52 40-9 28-2 50 19 67l227 174-86 278c-7 18-4 35 8 51 19 24 53 29 78 12l226-172 226 172c10 8 21 12 33 12 36 0 65-36 54-75l-87-280 226-172c22-17 29-39 20-67">
+      </path>
+    </svg>
+  </div>
+  <div class="-mt-1">
+    <h6 class="text-lg font-medium">Entire home</h6>
+    <p class="text-sm text-gray-600 tracking-wide">You’ll have the house to yourself.</p>
+  </div>
+</div>
+
+<div class="flex px-4 sm:px-0 mb-6">
+  <div class="mr-4">
+    <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false"
+      style="height: 20px; width: 20px; display: block; fill: currentcolor;">
+      <path
+        d="m18 5v-1c1.28 0 2-.72 2-2s-.72-2-2-2h-8.5c-1.44 0-2.5 1.42-2.5 3.5 0 .69.44 1.13 1.09 1.35.19.06.37.1.54.12l.37 1.11v4.69l-3.46 3.03c-.31.27-.54.79-.54 1.2v6.5c0 1.28 1.22 2.5 2.5 2.5h8c1.28 0 2.5-1.22 2.5-2.5v-6.5c0-.42-.23-.93-.54-1.2l-3.46-3.03v-4.77c0 .04.03-.08.08-.23.06-.19.16-.37.25-.55.04.06.07.12.11.19.32.5.69 1.01 1.12 1.48.97 1.07 2.08 1.83 3.32 2.1a.5.5 0 0 0 .52-.77c-.7-1.04-1.4-2.51-1.4-3.22zm1-3c0 .72-.28 1-1 1v-2c .72 0 1 .28 1 1zm-2 19.5c0 .72-.78 1.5-1.5 1.5h-8c-.72 0-1.5-.78-1.5-1.5v-5.14c.07.03.12.07.2.1.74.33 1.51.53 2.3.54a11.69 11.69 0 0 0 1.81-.14c.44-.06.83-.13 1.56-.27 1.59-.3 2.19-.39 2.93-.39.6 0 1.2.1 1.77.28.17.05.31.1.43.15zm-.2-6.95c.09.08.2.32.2.44v.57c-.05-.02-.09-.03-.14-.05a7.02 7.02 0 0 0 -2.06-.32c-.83 0-1.46.09-3.12.41a31.79 31.79 0 0 1 -1.52.26c-.62.09-1.16.13-1.66.13-.64-.01-1.28-.18-1.9-.46a5.38 5.38 0 0 1 -.61-.32v-.22c0-.13.11-.37.2-.45l3.63-3.18.17-.15v-2.21h3v-1h-3v-1h3.01v4 .23l.17.15 3.63 3.18zm-3.23-10.06a4.6 4.6 0 0 0 -.56 1.41v.1h-3.01l-.03-.16-.5-1.5-.11-.34h-.36a2.01 2.01 0 0 1 -.59-.1c-.29-.09-.41-.22-.41-.4 0-1.58.69-2.5 1.5-2.5h7.5v2h-1c-1.07 0-1.88.57-2.43 1.49zm2.74 1.72a9.76 9.76 0 0 1 -1.31-1.85 1.58 1.58 0 0 1 1-.36h1v1c0 .64.34 1.57.8 2.46a6.7 6.7 0 0 1 -1.49-1.25z"
+        fill-rule="evenodd"></path>
+    </svg>
+  </div>
+  <div class="-mt-1">
+    <h6 class="text-lg font-medium">Sparkling clean</h6>
+    <p class="text-sm text-gray-600 tracking-wide">17 recent guests said this place was sparkling clean.</p>
+  </div>
+</div>
+
+{% if room.host.superhost %}
+<div class="flex px-4 sm:px-0 mb-6">
+  <div class="mr-4">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="presentation" aria-hidden="true" focusable="false"
+      style="height: 20px; width: 20px; display: block; fill: currentcolor;">
+      <path
+        d="M6 1.678V9.5c0 .333.088.533.304.701l4.953 3.801c.383.23 1.134.232 1.439.032l4.999-3.832c.2-.154.304-.417.305-.775V5.36v-3.66L12.35 6.87a.5.5 0 0 1-.675 0zM6.74 1l5.273 4.822L17.285 1zM5 1.5C5.002.718 5.72-.002 6.5 0h11c.78 0 1.5.72 1.5 1.5V9.428c-.001.645-.222 1.202-.696 1.567l-5.029 3.854c-.663.437-1.828.434-2.58-.021l-5.002-3.835C5.217 10.623 5 10.127 5 9.5zM15 20a3 3 0 1 0-6.001 0A3 3 0 0 0 15 20zm1 0a4 4 0 1 1-8 0 4 4 0 0 1 8 0z">
+      </path>
+    </svg>
+  </div>
+  <div class="-mt-1">
+    <h6 class="text-lg font-medium">{{room.host|title}} is a Superhost</h6>
+    <p class="text-sm text-gray-600 tracking-wide">17 recent guests said this place was sparkling clean.</p>
+  </div>
+</div>
+{% endif %}
+
+<div class="flex px-4 sm:px-0 mb-6">
+  <div class="mr-4">
+    <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false"
+      style="height: 20px; width: 20px; display: block; fill: currentcolor;">
+      <path
+        d="m11.5 0c-5.08 0-8.5 3.56-8.5 8.5 0 4.55 1.9 8.07 8.12 15.33a.5.5 0 0 0 .76 0c6.22-7.26 8.12-10.78 8.12-15.33 0-4.94-3.41-8.5-8.5-8.5zm0 22.73c-5.76-6.78-7.5-10.07-7.5-14.23 0-4.4 2.98-7.5 7.5-7.5 4.53 0 7.5 3.1 7.5 7.5 0 4.16-1.74 7.45-7.5 14.23zm0-17.73a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm0 6a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"
+        fill-rule="evenodd"></path>
+    </svg>
+  </div>
+  <div class="-mt-1">
+    <h6 class="text-lg font-medium">Great location</h6>
+    <p class="text-sm text-gray-600 tracking-wide">95% of recent guests gave the location a 5-star rating.</p>
+  </div>
+</div>

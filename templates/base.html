@@ -18,7 +18,7 @@
   <body class="text-gray-800 text-sm sm:text-base">
     
     {% if request.path == '/' %}
-      <header class="container max-w-full relative">
+      <header class="container max-w-full relative z-50">
         <div class="flex items-center justify-between px-6 h-20">
           <div class="flex items-center">
             <a class="mr-6" href="{% url 'core:home' %}">
@@ -52,20 +52,22 @@
       </header>
 
       {% else %}
-      <div class="container max-w-full fixed z-50 top-0 bg-white border-b border-gray-500">
-        <div class="flex items-center justify-between px-6 h-20">
+      <div class="container sm:max-w-full fixed z-50 top-0 bg-white border-b border-gray-300">
+        <div class="flex items-center sm:justify-between px-6 h-20">
           <div class="flex items-center">
             <a class="mr-6" href="{% url 'core:home' %}">
               <img class="w-10" src="{% static 'img/airbnb.svg' %}" alt="">
             </a>
 
-            <form class="mt-2" method="get" action="{% url 'rooms:search' %}">
+            <form class="mt-2 hidden sm:block" method="get" action="{% url 'rooms:search' %}">
               <input
                 class="rounded-sm border border-gray-400 focus:outline-none shadow px-2 py-3 focus:border-green-600 w-85 transition ease-linear duration-500 text-gray-700"
                 name="city" type="text" placeholder="Anywhere" />
             </form>
             </div>
-          <div class="text-gray-700">{% include "partials/nav.html" %}</div>
+          <div class="text-gray-700 ml-40 sm:ml-0">
+            {% include "partials/nav.html" with user=user %}
+          </div>
         </div>
       </div>
     {% endif %}

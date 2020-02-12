@@ -144,3 +144,6 @@ EMAIL_HOST_USER = os.environ.get("MAILGUN_USER")
 EMAIL_HOST_PASSWORD = os.environ.get("MAILGUN_PASSWORD")
 EMAIL_FROM = "noreply@airbnbclone.com"
 
+
+# Auth
+LOGIN_URL = "/users/login"

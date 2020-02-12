@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block page_name %}
+  {{room.name}}'s Photos
+{% endblock page_name %}
+
+{% block content %}
+
+<div class="container max-w-full px-4 sm:px-20 mt-40">
+  <div class=" mb-5">
+    <a href="{% url 'rooms:edit' room.pk %}" class="text-xl text-gray-600 hover:text-gray-800"><i class="fas fa-arrow-left"></i> Back to edit room</a>
+  </div>
+
+  <div class="mb-6">
+    <a class="py-3 px-10 text-white bg-teal-700 rounded block text-center font-body mb-4" href="{% url 'rooms:add-photo' room.pk %}">Upload photo</a>
+  </div>
+
+  {% for photo in room.photos.all  %}
+    <div class="border border-gray-400 p-6 mb-6 sm:flex justify-between">
+      <div class="sm:flex sm:flex-start">
+        <img class="w-full sm:w-64 h-56 sm:h-48" src="{{photo.file.url}}" alt="">
+        <p class="my-5 sm:my-0 sm:ml-5">{{photo.caption}}</p>
+      </div>
+
+      <div class="sm:flex sm:flex-col w-full sm:w-64">
+        <a class="py-3 px-10 text-white bg-teal-700 rounded block text-center font-body mb-4" href="{% url 'rooms:edit-photo' room.pk photo.pk %}">Edit Photo</a>
+        <a class="py-3 px-10 text-white bg-red-700 rounded block text-center font-body mb-4" href="{% url 'rooms:delete-photo' room.pk photo.pk %}">Delete Photo</a>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+{% endblock content %}

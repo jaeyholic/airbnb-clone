@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block page_name %}
+Upload photo
+{% endblock page_name %}
+
+{% block content %}
+
+<div class="container max-w-full px-4 sm:px-0 mt-40">
+  <div class="flex flex-col justify-center items-center">
+    <div class="w-full sm:w-110 border bg-white border-gray-300 p-6 rounded-sm">
+
+      <form class="my-5" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+        <span class="text-red-700 font-medium text-sm">
+          {{error}}
+        </span>
+        {% endfor %}
+        {% endif %}
+
+        <input type="text" name="caption" maxlength="80" required="" id="id_caption" placeholder="Caption">
+
+        {{object.file}}
+
+        <label
+          class="flex items-center justify-center mx-auto px-4 py-3 bg-white rounded-sm border border-gray-700 cursor-pointer mt-3">
+          <span class="text-sm font-medium leading-normal">Upload a file from your computer</span>
+          <input type="file" name="file" accept="image/*" required="" id="id_file" class="hidden">
+        </label>
+
+        <div class="flex items-center">
+          <button
+            class="bg-teal-700 text-white w-20 text-center rounded p-3 font-medium mt-4 focus:outline-none">Save</button>
+
+          <div class="ml-4 mt-4">
+            <a class="text-teal-700 font-medium" href="{{rooms.get_absolute_url}}">Cancel</a>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

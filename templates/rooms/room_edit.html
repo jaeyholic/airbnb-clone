@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block page_name %}
-Update Profile
+Update Room
 {% endblock page_name %}
 
 {% block content %}
@@ -10,7 +10,7 @@ Update Profile
   <div class="flex flex-col justify-center items-center">
     <div class="w-full sm:w-120 border bg-white border-gray-300 p-6 rounded-sm">
 
-      <form class="my-4" method="post" enctype="multipart/form-data">
+      <form class="my-5" method="post" enctype="multipart/form-data">
         {% csrf_token %}
 
         {% if form.non_field_errors %}
@@ -23,23 +23,21 @@ Update Profile
 
 
         {% for field in form %}
-        {% include "partials/form_input.html" with field=field %}
+        {% include "mixins/room_input.html" with field=field %}
         {% endfor %}
 
         <div class="flex items-center">
-          <button class="bg-teal-700 text-white w-20 text-center rounded p-3 font-medium mt-4 focus:outline-none">Save</button>
-          
+          <button
+            class="bg-teal-700 text-white w-20 text-center rounded p-3 font-medium mt-4 focus:outline-none">Save</button>
+
           <div class="ml-4 mt-4">
-            <a class="text-teal-700 font-medium" href="{{user.get_absolute_url}}">Cancel</a>
+            <a class="text-teal-700 font-medium" href="{{room.get_absolute_url}}">Cancel</a>
           </div>
         </div>
+
       </form>
 
-     
-     {% if object.login_method == 'email' %}
-      <a class="text-blue-700 font-body text-center" href="{% url 'users:password' %}">Change Password</a>
-     {% endif %}
-       
+      <a class="text-blue-700 font-body text-center block" href="{% url 'rooms:edit-photos' room.pk %}">Update Photos</a>
     </div>
   </div>
 </div>

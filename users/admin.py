@@ -17,7 +17,6 @@ class CustomUserAdmin(admin.ModelAdmin):
                     "birthdate",
                     "language",
                     "currency",
-                    "country",
                     "bio",
                     "superhost",
                     "login_method",

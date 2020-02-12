@@ -1,0 +1,45 @@
+<div class="w-full sm:w-3/5">
+  <div class="mt-10 border-b border-gray-400 pb-5 w-120 flex items-center justify-between">
+    <div>
+      <h5 class="text-xl sm:text-2xl font-body">Entire house hosted by {{room.host|title}}</h5>
+      <div class="flex items-center">
+        <p>{{room.guests}} guests</p>
+        <span class="mx-2 text-gray-600 text-xx">&bull;</span>
+        <p>{{room.bedrooms}} bedrooms</p>
+        <span class="mx-2 text-gray-600 text-xx">&bull;</span>
+        <p>{{room.beds}} bed{{room.beds|pluralize}}</p>
+        <span class="mx-2 text-gray-600 text-xx">&bull;</span>
+        <p>{{room.baths}} bath{{room.baths|pluralize}}</p>
+      </div>
+    </div>
+
+    <div>
+      <a href="{{room.host.get_absolute_url}}">
+        {% if room.host.avatar %}
+        <img class="rounded-full w-10 h-10 mx-auto object-cover mb-4" src="{{room.host.avatar.url}}" />
+
+        {% else %}
+        <div>
+          <p
+            class="rounded-full w-10 h-10 mx-auto object-cover mb-4 bg-gray-800 text-gray-200 text flex justify-center items-center text-2xl">
+            {{room.host.username|first|title}}</p>
+        </div>
+        {% endif %}
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="w-full sm:w-2/5">
+  <div class="w-full sm:w-90 mt-8">
+    
+    {% if room.host == user %}
+      <a href="{% url 'rooms:edit' room.pk %}"
+        class="block bg-red-700 text-center w-full py-3 text-white font-body rounded-lg mt-4">Edit this room</a>
+
+    {% else %}
+    <h6 class="text-xl font-body">${{room.price}} <span class="font-sans text-gray-600">/ night</span></h6>
+    <a href="#" class="block bg-red-700 text-center w-full py-3 text-white font-body rounded-lg mt-4">Check Availability</a>
+    {% endif %}
+  </div>
+</div>

@@ -4,8 +4,8 @@
   {% if user.is_authenticated %}
     <li class="mr-8 mt-4">
       <a href="{{user.get_absolute_url}}">
-        {% if user_obj.avatar %}
-        <img class="rounded-full w-8 h-8 mx-auto object-cover mb-4 overflow-hidden" src="{{object.avatar.url}}" />
+        {% if user.avatar %}
+        <img class="rounded-full w-8 h-8 mx-auto object-cover mb-4 overflow-hidden" src="{{user.avatar.url}}" />
       </a>
         {% else %}
         <div>
